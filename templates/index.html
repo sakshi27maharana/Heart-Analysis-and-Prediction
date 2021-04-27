@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html >
+<body  align="center" style="background-color:white;">
+<head>
+  <meta charset="UTF-8">
+  <title>MODEL DEPLOYMENT</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <style>
+      body {
+        font-family: 'Tangerine', serif;
+        font-size: 28px;
+      }
+    </style>
+
+
+</head>
+
+<body>
+ <div class="login">
+	<h1 style="color:red" align="center" style="background-color:powderblue;">Heart Analysis!!</h1>
+
+     <pre align="left" style="font-size:60%;" style="text-align:left;">Values in the dataset are defined as :
+
+         1. caa : number of major vessels (0-3) colored by flourosopy.
+         2. cp : Chest Pain type chest pain type
+            Value 1: typical angina
+            Value 2: atypical angina
+            Value 3: non-anginal pain
+            Value 4: asymptomatic
+         3. restecg : resting electrocardiographic results
+            Value 0: normal
+            Value 1: having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV)
+            Value 2: showing probable or definite left ventricular hypertrophy by Estes' criteria
+         4. slp : the slope of the peak exercise ST segment (1 = upsloping; 2 = flat; 3 = downsloping)
+         5. thal : 3 = normal; 6 = fixed defect; 7 = reversable defect.
+         6. thalachh : maximum heart rate achieved
+     </pre>
+
+     <pre align="left" style="font-size:60%;" style="text-align:left;">Output of the prediction:
+
+         0= less chance of heart attack
+         1= more chance of heart attack
+     </pre>
+
+
+    <form align="left" action="{{ url_for('predict')}}"method="post">
+    	<input size="50" type="text" style="text-align:left" name="thall_fixed defect" placeholder="thall = fixed defect" required="required" />
+        <br>
+        <input size="50" type="text" style="text-align:left" name="thall_reversable defect" placeholder="thall = reversable defect" required="required" />
+        <br>
+		<input size="50" type="text" style="text-align:left" name="thall_normal" placeholder="thall = normal" required="required" />
+        <br>
+        <input size="50" type="text" style="text-align:left" name="restecg_normal" placeholder="resting electrocardiographic = normal" required="required" />
+        <br>
+        <input size="50" type="text" style="text-align:left" name="restecg_left ventricular hypertrophy" placeholder="resting electrocardiographic = left ventricular hypertrophy" required="required" />
+        <br>
+		<input size="50" type="text" style="text-align:left" name="cp_typical angina" placeholder="Chest Pain type = typical angina" required="required" />
+        <br>
+        <input size="50" type="text" style="text-align:left" name="cp_non-anginal pain" placeholder="Chest Pain type = non-anginal pain" required="required" />
+        <br>
+        <input size="50" type="text" style="text-align:left" name="cp_atypical angina" placeholder="Chest Pain type = atypical angina" required="required" />
+        <br>
+		<input size="50" type="text" style="text-align:left" name="caa" placeholder="number of major vessels (0-3) colored by flourosopy" required="required" />
+        <br>
+        <input size="50" type="text" style="text-align:left" name="slp" placeholder="the slope of the peak exercise ST segment" required="required" />
+        <br>
+
+
+        <button style="height:20px;width:120px" align="center" type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+     <br>
+     <br>
+
+     <pre align="left" style="font-size:60%;" style="text-align:left;">** Note : Values can be filled in two ways --
+           0 -> false
+           1 -> true
+     </pre>
+
+     {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
